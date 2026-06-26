@@ -3,14 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#120f24" />
   <title>Gửi Vi Vi là mặt trời nhỏ ☀️</title>
   <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
+  <div class="background-orb orb-1"></div>
+  <div class="background-orb orb-2"></div>
+  <div class="background-orb orb-3"></div>
+
   <main class="app">
-    <!-- Lock Screen -->
+    <!-- LOCK SCREEN -->
     <section id="lockScreen" class="screen active">
       <div class="glass card lock-card">
+        <div class="top-badge">☀️ Vi Vi là mặt trời nhỏ</div>
         <div class="time" id="time">00:00</div>
         <div class="date" id="date">Chủ nhật, 1/7/2011</div>
 
@@ -19,7 +25,7 @@
 
         <input id="passwordInput" type="password" maxlength="6" readonly placeholder="••••••" />
 
-        <div class="keypad">
+        <div class="keypad" aria-label="Bàn phím số">
           <button onclick="pressKey('1')">1</button>
           <button onclick="pressKey('2')">2</button>
           <button onclick="pressKey('3')">3</button>
@@ -39,76 +45,77 @@
       </div>
     </section>
 
-    <!-- Profile -->
+    <!-- PROFILE -->
     <section id="profileScreen" class="screen">
       <div class="glass card profile-card">
-        <img class="avatar" src="./assets/avatar.jpg" alt="Avatar" />
-        <h2>Trịnh Ngọc Tường Vi</h2>
-        <p class="nickname">Vi Vi là mặt trời nhỏ ☀️</p>
+        <div class="profile-head">
+          <img id="avatarImage" class="avatar" alt="Ảnh của Vi" />
+          <div class="profile-title">
+            <h2>Trịnh Ngọc Tường Vi</h2>
+            <p class="nickname">Vi Vi là mặt trời nhỏ ☀️</p>
+          </div>
+        </div>
+
         <div class="info">
           <div><span>Ngày sinh</span><b>01/07/2011</b></div>
           <div><span>Xưng hô</span><b>Tui - Vi</b></div>
-          <div><span>Hồ sơ</span><b>Đặc biệt</b></div>
+          <div><span>Ghi chú</span><b>Đặc biệt</b></div>
         </div>
 
         <div class="music-bar">
-          <div>
+          <div class="music-meta">
             <small>Đang phát</small>
-            <strong>Ca khúc love</strong>
+            <strong id="trackName">Nhạc nền</strong>
           </div>
-          <button onclick="toggleMusic()" id="musicBtn">▶</button>
+          <button onclick="toggleMusic()" id="musicBtn" aria-label="Bật tắt nhạc">▶</button>
         </div>
 
-        <button class="secondary" onclick="showSection('messageScreen')">Lời nhắn</button>
-        <button class="secondary" onclick="showSection('albumScreen')">Album ảnh</button>
-        <button class="secondary" onclick="showSection('giftScreen')">Hộp quà cuối</button>
+        <div class="actions">
+          <button class="secondary" onclick="showSection('messageScreen')">Lời nhắn</button>
+          <button class="secondary" onclick="showSection('albumScreen')">Album ảnh</button>
+          <button class="secondary" onclick="showSection('giftScreen')">Hộp quà cuối</button>
+        </div>
       </div>
     </section>
 
-    <!-- Message -->
+    <!-- MESSAGE -->
     <section id="messageScreen" class="screen">
       <div class="glass card">
         <h2>Lời nhắn</h2>
         <p class="message">
-          Tui chỉ muốn nói là từ khi có Vi, mọi thứ tự nhiên dịu đi một chút và ấm hơn một chút.
-          Hy vọng Vi luôn vui, luôn xinh và lúc nào cũng giữ được nụ cười của mình.
+          Tui khum bít sau này sẽ ra sao, nhưng tui biết là từ lúc Vi xuất hiện,
+          mọi thứ tự nhiên dịu hơn một chút, ấm hơn một chút.
+          Hy vọng Vi luôn zui zẻ, luôn mạnh khỏe, và lúc nào cũng rạng rỡ như một mặt trời nhỏ^^
         </p>
-        <button class="secondary" onclick="showSection('profileScreen')">Quay lại hồ sơ</button>
+        <button class="secondary" onclick="showSection('profileScreen')">Quay lại trang</button>
       </div>
     </section>
 
-    <!-- Album -->
+    <!-- ALBUM -->
     <section id="albumScreen" class="screen">
       <div class="glass card">
         <h2>Album ảnh</h2>
-        <div class="album">
-          <img src="./assets/photos/1.jpg" alt="Ảnh 1">
-          <img src="./assets/photos/2.jpg" alt="Ảnh 2">
-          <img src="./assets/photos/3.jpg" alt="Ảnh 3">
-        </div>
+        <p class="sub">Tự quét ảnh trong thư mục assets</p>
+        <div class="album" id="albumGrid"></div>
         <button class="secondary" onclick="showSection('profileScreen')">Quay lại hồ sơ</button>
       </div>
     </section>
 
-    <!-- Gift -->
+    <!-- GIFT -->
     <section id="giftScreen" class="screen">
       <div class="glass card gift-card">
         <div class="gift">🎁</div>
-        <h2>Mở quà</h2>
-        <p>Chạm vào món quà để nhận lời chúc cuối.</p>
+        <h2>Hộp quà cuối</h2>
+        <p>Chạm vào món quà để nhận lời chúc.</p>
         <button class="primary" onclick="openGift()">Mở quà</button>
-        <div id="finalWish" class="final-wish hidden">
-          Chúc Vi luôn vui vẻ, mạnh khỏe, học thật tốt và lúc nào cũng rạng rỡ như một mặt trời nhỏ. ☀️
-        </div>
+        <div id="finalWish" class="final-wish hidden"></div>
         <button class="secondary" onclick="showSection('profileScreen')">Quay lại hồ sơ</button>
       </div>
     </section>
 
-    <audio id="bgMusic" loop>
-      <source src="./assets/music.mp3" type="audio/mpeg" />
-    </audio>
+    <audio id="bgMusic" loop playsinline preload="auto"></audio>
   </main>
 
   <script src="./script.js"></script>
 </body>
-  </html>
+</html>
