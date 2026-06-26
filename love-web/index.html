@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Gửi Vi Vi là mặt trời nhỏ ☀️</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <main class="app">
+    <!-- Lock Screen -->
+    <section id="lockScreen" class="screen active">
+      <div class="glass card lock-card">
+        <div class="time" id="time">00:00</div>
+        <div class="date" id="date">Chủ nhật, 1/7/2011</div>
+
+        <h1>Nhập mật khẩu</h1>
+        <p class="sub">Một món quà nhỏ dành cho Vi</p>
+
+        <input id="passwordInput" type="password" maxlength="6" readonly placeholder="••••••" />
+
+        <div class="keypad">
+          <button onclick="pressKey('1')">1</button>
+          <button onclick="pressKey('2')">2</button>
+          <button onclick="pressKey('3')">3</button>
+          <button onclick="pressKey('4')">4</button>
+          <button onclick="pressKey('5')">5</button>
+          <button onclick="pressKey('6')">6</button>
+          <button onclick="pressKey('7')">7</button>
+          <button onclick="pressKey('8')">8</button>
+          <button onclick="pressKey('9')">9</button>
+          <button class="special" onclick="clearAll()">C</button>
+          <button onclick="pressKey('0')">0</button>
+          <button class="special" onclick="backspace()">⌫</button>
+        </div>
+
+        <button class="primary" onclick="checkPassword()">Mở khóa</button>
+        <p id="errorMsg" class="error">Nhập sai rồi, thử lại nha.</p>
+      </div>
+    </section>
+
+    <!-- Profile -->
+    <section id="profileScreen" class="screen">
+      <div class="glass card profile-card">
+        <img class="avatar" src="./assets/avatar.jpg" alt="Avatar" />
+        <h2>Trịnh Ngọc Tường Vi</h2>
+        <p class="nickname">Vi Vi là mặt trời nhỏ ☀️</p>
+        <div class="info">
+          <div><span>Ngày sinh</span><b>01/07/2011</b></div>
+          <div><span>Xưng hô</span><b>Tui - Vi</b></div>
+          <div><span>Hồ sơ</span><b>Đặc biệt</b></div>
+        </div>
+
+        <div class="music-bar">
+          <div>
+            <small>Đang phát</small>
+            <strong>Ca khúc love</strong>
+          </div>
+          <button onclick="toggleMusic()" id="musicBtn">▶</button>
+        </div>
+
+        <button class="secondary" onclick="showSection('messageScreen')">Lời nhắn</button>
+        <button class="secondary" onclick="showSection('albumScreen')">Album ảnh</button>
+        <button class="secondary" onclick="showSection('giftScreen')">Hộp quà cuối</button>
+      </div>
+    </section>
+
+    <!-- Message -->
+    <section id="messageScreen" class="screen">
+      <div class="glass card">
+        <h2>Lời nhắn</h2>
+        <p class="message">
+          Tui chỉ muốn nói là từ khi có Vi, mọi thứ tự nhiên dịu đi một chút và ấm hơn một chút.
+          Hy vọng Vi luôn vui, luôn xinh và lúc nào cũng giữ được nụ cười của mình.
+        </p>
+        <button class="secondary" onclick="showSection('profileScreen')">Quay lại hồ sơ</button>
+      </div>
+    </section>
+
+    <!-- Album -->
+    <section id="albumScreen" class="screen">
+      <div class="glass card">
+        <h2>Album ảnh</h2>
+        <div class="album">
+          <img src="./assets/photos/1.jpg" alt="Ảnh 1">
+          <img src="./assets/photos/2.jpg" alt="Ảnh 2">
+          <img src="./assets/photos/3.jpg" alt="Ảnh 3">
+        </div>
+        <button class="secondary" onclick="showSection('profileScreen')">Quay lại hồ sơ</button>
+      </div>
+    </section>
+
+    <!-- Gift -->
+    <section id="giftScreen" class="screen">
+      <div class="glass card gift-card">
+        <div class="gift">🎁</div>
+        <h2>Mở quà</h2>
+        <p>Chạm vào món quà để nhận lời chúc cuối.</p>
+        <button class="primary" onclick="openGift()">Mở quà</button>
+        <div id="finalWish" class="final-wish hidden">
+          Chúc Vi luôn vui vẻ, mạnh khỏe, học thật tốt và lúc nào cũng rạng rỡ như một mặt trời nhỏ. ☀️
+        </div>
+        <button class="secondary" onclick="showSection('profileScreen')">Quay lại hồ sơ</button>
+      </div>
+    </section>
+
+    <audio id="bgMusic" loop>
+      <source src="./assets/music.mp3" type="audio/mpeg" />
+    </audio>
+  </main>
+
+  <script src="./script.js"></script>
+</body>
+  </html>
