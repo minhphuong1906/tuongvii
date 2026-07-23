@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#ff6b9d" />
+  <title>Gửi Vi Vi là mặt trời nhỏ ☀️</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <main class="app">
+    <!-- ANIMATED LOVE BACKGROUND -->
+    <div class="love-bg">
+      <div class="heart" style="--i: 1"></div>
+      <div class="heart" style="--i: 2"></div>
+      <div class="heart" style="--i: 3"></div>
+      <div class="heart" style="--i: 4"></div>
+      <div class="heart" style="--i: 5"></div>
+    </div>
+
+    <!-- LOCK SCREEN -->
+    <section id="lockScreen" class="screen active">
+      <div class="lock-wrapper">
+        <div class="lock-content">
+          <div class="lock-top">
+            <h1 class="lock-title">Vi Vi</h1>
+            <p class="lock-subtitle">Một món quà nhỏ dành cho em ☀️</p>
+          </div>
+
+          <div class="lock-time">
+            <div class="time" id="time">00:00</div>
+            <div class="date" id="date">Hôm nay</div>
+          </div>
+
+          <div class="lock-password">
+            <label>Nhập mật khẩu</label>
+            <div class="password-display">
+              <span id="p1"></span>
+              <span id="p2"></span>
+              <span id="p3"></span>
+              <span id="p4"></span>
+              <span id="p5"></span>
+              <span id="p6"></span>
+            </div>
+            <input id="passwordInput" type="hidden" maxlength="6" />
+          </div>
+
+          <div class="keypad">
+            <button onclick="pressKey('1')">1</button>
+            <button onclick="pressKey('2')">2</button>
+            <button onclick="pressKey('3')">3</button>
+            <button onclick="pressKey('4')">4</button>
+            <button onclick="pressKey('5')">5</button>
+            <button onclick="pressKey('6')">6</button>
+            <button onclick="pressKey('7')">7</button>
+            <button onclick="pressKey('8')">8</button>
+            <button onclick="pressKey('9')">9</button>
+            <button class="key-del" onclick="clearAll()">C</button>
+            <button onclick="pressKey('0')">0</button>
+            <button class="key-del" onclick="backspace()">⌫</button>
+          </div>
+
+          <button class="btn-unlock" onclick="checkPassword()">Mở khóa</button>
+          <p id="errorMsg" class="error-text"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOME SCREEN -->
+    <section id="homeScreen" class="screen">
+      <div class="home-wrapper">
+        <!-- PROFILE CARD -->
+        <div class="profile-card">
+          <div class="profile-avatar">
+            <img id="avatarImage" alt="Vi" />
+          </div>
+          <div class="profile-text">
+            <h2>Trịnh Ngọc Tường Vi</h2>
+            <p>Vi Vi là mặt trời nhỏ ☀️</p>
+          </div>
+        </div>
+
+        <!-- COUNTER CARD -->
+        <div class="counter-card">
+          <h3>❤️ Thời gian đã gắn kết</h3>
+          <div class="counter-display">
+            <div class="counter-item">
+              <span class="counter-number" id="days">0</span>
+              <span class="counter-label">Ngày</span>
+            </div>
+            <div class="counter-item">
+              <span class="counter-number" id="hours">0</span>
+              <span class="counter-label">Giờ</span>
+            </div>
+            <div class="counter-item">
+              <span class="counter-number" id="minutes">0</span>
+              <span class="counter-label">Phút</span>
+            </div>
+            <div class="counter-item">
+              <span class="counter-number" id="seconds">0</span>
+              <span class="counter-label">Giây</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- MENU -->
+        <div class="menu-section">
+          <button class="menu-item" onclick="showSection('messageScreen')">
+            <i class="fas fa-heart"></i>
+            <span>Lời nhắn</span>
+          </button>
+          <button class="menu-item" onclick="showSection('albumScreen')">
+            <i class="fas fa-images"></i>
+            <span>Album</span>
+          </button>
+          <button class="menu-item" onclick="showSection('giftScreen')">
+            <i class="fas fa-gift"></i>
+            <span>Hộp quà</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- MESSAGE SCREEN -->
+    <section id="messageScreen" class="screen">
+      <div class="modal-wrapper">
+        <button class="btn-close" onclick="showSection('homeScreen')">✕</button>
+        <div class="modal-content">
+          <h2>💌 Lời nhắn</h2>
+          <div class="message-text">
+            <p>Tui khum bít sau này sẽ ra sao, nhưng tui biết là từ lúc Vi xuất hiện, mọi thứ tự nhiên dịu hơn một chút, ấm hơn một chút.</p>
+            <p>Hy vọng Vi luôn zui zẻ, luôn mạnh khỏe, và lúc nào cũng rạng rỡ như một mặt trời nhỏ.✨</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ALBUM SCREEN -->
+    <section id="albumScreen" class="screen">
+      <div class="modal-wrapper">
+        <button class="btn-close" onclick="showSection('homeScreen')">✕</button>
+        <div class="modal-content">
+          <h2>🖼️ Album</h2>
+          <div class="album-grid" id="albumGrid"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GIFT SCREEN -->
+    <section id="giftScreen" class="screen">
+      <div class="modal-wrapper">
+        <button class="btn-close" onclick="showSection('homeScreen')">✕</button>
+        <div class="modal-content gift-content">
+          <div class="gift-box-wrapper" onclick="openGift()" id="giftBoxWrapper">
+            <div class="gift-box">🎁</div>
+            <p class="gift-hint">Chạm vào để mở</p>
+          </div>
+          <div id="flowerBox" class="flower-box hidden">
+            <svg class="flower-svg" viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
+              <!-- Flower Petals -->
+              <g class="petal" style="transform-origin: 100px 100px">
+                <ellipse cx="100" cy="30" rx="20" ry="35" fill="#ff6b9d" opacity="0.9"/>
+              </g>
+              <g class="petal" style="transform-origin: 100px 100px; transform: rotate(72deg)">
+                <ellipse cx="100" cy="30" rx="20" ry="35" fill="#ff1493" opacity="0.9"/>
+              </g>
+              <g class="petal" style="transform-origin: 100px 100px; transform: rotate(144deg)">
+                <ellipse cx="100" cy="30" rx="20" ry="35" fill="#ff69b4" opacity="0.9"/>
+              </g>
+              <g class="petal" style="transform-origin: 100px 100px; transform: rotate(216deg)">
+                <ellipse cx="100" cy="30" rx="20" ry="35" fill="#ffb6d9" opacity="0.9"/>
+              </g>
+              <g class="petal" style="transform-origin: 100px 100px; transform: rotate(288deg)">
+                <ellipse cx="100" cy="30" rx="20" ry="35" fill="#ffc0cb" opacity="0.9"/>
+              </g>
+              
+              <!-- Center Circle -->
+              <circle cx="100" cy="100" r="18" fill="#FFD700" opacity="0.95"/>
+              <circle cx="100" cy="100" r="15" fill="#FFA500" opacity="0.8"/>
+              
+              <!-- Stem -->
+              <path d="M 100 120 Q 95 160 90 220" stroke="#2d5016" stroke-width="4" fill="none" stroke-linecap="round"/>
+              
+              <!-- Leaves -->
+              <ellipse cx="75" cy="160" rx="15" ry="30" fill="#2d5016" opacity="0.7" transform="rotate(-45 75 160)"/>
+              <ellipse cx="125" cy="180" rx="15" ry="30" fill="#3d6b1f" opacity="0.7" transform="rotate(45 125 180)"/>
+            </svg>
+            <p class="flower-text">Tặng hoa cho Vi nè</p>
+          </div>
+          
+          <!-- Love or No Love Button -->
+          <button class="btn-love-game" onclick="goToLoveGame()">💕 Love hay no love</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- IMAGE MODAL -->
+    <div id="imageModal" class="image-modal hidden" onclick="closeImageModal()">
+      <button class="modal-close-btn" onclick="closeImageModal()">✕</button>
+      <div class="modal-media-wrapper" onclick="event.stopPropagation()">
+        <img id="modalImage" class="modal-image hidden" />
+        <video id="modalVideo" class="modal-video hidden" controls></video>
+        <button id="videoPlayBtn" class="video-play-btn hidden" onclick="playModalVideo()">▶</button>
+      </div>
+    </div>
+
+    <audio id="bgMusic" loop playsinline preload="auto"></audio>
+  </main>
+
+  <script src="./script.js"></script>
+</body>
+</html>
